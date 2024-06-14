@@ -1,0 +1,17 @@
+/* .css-hwkq3c-MuiInputBase-root-MuiFilledInput-root{
+    border-radius: 10px !important;
+    
+}
+
+
+.css-hwkq3c-MuiInputBase-root-MuiFilledInput-root::before{
+    border-bottom: none !important;
+} */
+
+.MuiFilledInput-input{
+    padding-top: 8px !important
+}
+
+.MuiInputAdornment-positionStart{
+    margin-top: 0px !important;
+}

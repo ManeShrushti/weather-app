@@ -2,7 +2,7 @@ import { Card, Slider } from '@mui/material';
 import './MetaInfo.css';
 import {useState,useEffect} from 'react'
 import { DForecast, Location } from '../../models/weather';
-import { Brightness2, Brightness6, TrackChanges } from '@mui/icons-material';
+import { AirOutlined, Brightness2, Brightness6, TrackChanges, WaterOutlined, WbSunnyOutlined } from '@mui/icons-material';
 import moment from 'moment';
 
 export interface MetaInfoProps {
@@ -20,20 +20,23 @@ const MetaInfo = (props:MetaInfoProps) => {
                     <div className='flex flex-1 p-4 flex-col'>
                             <div className='flex justify-evenly flex-1'>  
                                 
-                                <div className='mr-4'><TrackChanges /> UV Index
-                                 <Slider defaultValue={metaData.uvIndex} aria-label="UV Index" color="primary" />
+                                <div className='mr-4 basis-[50%]'><TrackChanges sx={{color: '#0F4982'}} /> UV Index
+                                <progress id="uvIndex" value={metaData.uvIndex} max="12"></progress>
                                 </div>
-                                <div><Brightness6 sx={{color: '#EDC11B'}}/> Solar Radiation
-                                <div>{metaData.solarRadiationSum}</div>
+                                <div><WbSunnyOutlined sx={{color: '#0F4982'}}/> Solar Radiation
+                                    <div>{metaData.solarRadiationSum}</div>
                                 </div>
                             </div> 
                             <div className='flex justify-evenly flex-1'>   
-                                <div className='mr-4'><Brightness2 className='rotate-90' sx={{color: '#C6C5C5'}}/>
-                                        Moonrise <div>{moment(metaData.moonrise,"HH:mm:ss").format("hh:mm A")}</div>
+                                <div className='mr-4'>
+                                    <div><AirOutlined sx={{color: '#0F4982'}}/> Wind Speed
+                                        <div>{metaData.maxWindSpeed}</div>
+                                    </div>
                                 </div>
-                                <div><Brightness2 className='rotate-[270deg]' sx={{color: '##C6C5C5'}}/>
-                                        Moonset<div>{moment(metaData.moonset,"HH:mm:ss").format("hh:mm A")}</div>
+                                <div><WaterOutlined sx={{color: '#0F4982'}}/> Wind Gust
+                                        <div>{metaData.maxWindGust}</div>
                                 </div>
+                                
                             </div>
                         </div>
                 )}

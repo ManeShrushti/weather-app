@@ -8,15 +8,17 @@ import moment from 'moment';
 import { AccessTimeOutlined } from '@mui/icons-material';
 
 interface ForecastProps{
-    locationData : Location | null
+    locationData : Location | null,
+    tempUnit: string | 'C',
+    setIsDay: (isDay: boolean) => void
 }
 
 const HourlyForecast = (props:ForecastProps) => {
-    let weatherService = new WeatherService();
+  let weatherService = new WeatherService();
   const [hourlyForecast,setHourlyForecast] = useState<HForecast[] | []>([]);
   const [error, setError] = useState<string | null>(null);
   let currentSub: Subscription;
-
+  let tempUnit: string;
   const getIconURL = (symbol)=>{
     return `/image/symbols/${symbol}.png`
   }
@@ -25,16 +27,18 @@ const HourlyForecast = (props:ForecastProps) => {
       currentSub.unsubscribe();
     }
     if(props.locationData?.id){
-      currentSub = weatherService.getForecast(props.locationData?.id,'hourly',12).subscribe({
+      currentSub = weatherService.getForecast(props.locationData?.id,'hourly',12,props.tempUnit).subscribe({
         next: (data: HourlyForecastInfo) => {
+          let symbol = data.forecast[0].symbol.charAt(0);
+          props.setIsDay(symbol === 'd')
           setHourlyForecast(data.forecast);
         },
         error: (err) => {
           setError(err.message);
         },
-    });
+      });
     }
-  }, [props.locationData?.id]);
+  }, [props.locationData?.id,props.tempUnit]);
   return (
     hourlyForecast && (
     <div className='flex justify-start w-full p-2 flex-col'>
@@ -46,7 +50,7 @@ const HourlyForecast = (props:ForecastProps) => {
                     <div className='forecast-box' key={index.toString()}>
                         <div className='text-[0.75em]'>{index === 0 ? 'Now' : moment.parseZone(fc.time).format("HH:mm")}</div>
                         <div className='text-md'>
-                            {fc.temperature}{'\u00b0'}C
+                            {fc.temperature}{'\u00b0'}{props.tempUnit}
                         </div>
                         <img src={getIconURL(fc.symbol)} alt={fc.symbol} className='forecast-symbol'/>
                 </div>

@@ -9,7 +9,8 @@ import { AccessTimeOutlined, CalendarTodayOutlined } from '@mui/icons-material';
 
 interface DailyInfoProps{
     locationData : Location | null,
-    setMetaInfo: (metaData:DForecast) => void
+    setMetaInfo: (metaData:DForecast) => void,
+    tempUnit: string | 'C',
 }
 
 const DailyForecast = (props:DailyInfoProps) => {
@@ -26,7 +27,7 @@ const DailyForecast = (props:DailyInfoProps) => {
       currentSub.unsubscribe();
     }
     if(props.locationData?.id){
-      currentSub = weatherService.getForecast(props.locationData?.id,'daily',7).subscribe({
+      currentSub = weatherService.getForecast(props.locationData?.id,'daily',7,props.tempUnit).subscribe({
         next: (data: DailyForecastInfo) => {
           setDailyForecast(data.forecast);
           props.setMetaInfo(data.forecast[0]);
@@ -34,9 +35,9 @@ const DailyForecast = (props:DailyInfoProps) => {
         error: (err) => {
           setError(err.message);
         },
-    });
+      });
     }
-  }, [props.locationData?.id]);
+  }, [props.locationData?.id,props.tempUnit]);
   return (
     dailyForecast && (
     <div className='flex justify-start w-full p-2 flex-col'>
@@ -48,8 +49,8 @@ const DailyForecast = (props:DailyInfoProps) => {
                     <div className='forecast-box' key={index.toString()}>
                         <div className='text-[0.75em]'>{index === 0 ? 'Today' : moment.parseZone(fc.date).format("ddd")}</div>
                         <div className='text-xs'>
-                            <div>Min: {fc.minTemp}{'\u00b0'}C </div>
-                            <div>Max: {fc.maxTemp}{'\u00b0'}C</div>
+                            <div>Min: {fc.minTemp}{'\u00b0'}{props.tempUnit} </div>
+                            <div>Max: {fc.maxTemp}{'\u00b0'}{props.tempUnit}</div>
                         </div>
                         <img src={getIconURL(fc.symbol)} alt={fc.symbol} className='forecast-symbol'/>
                 </div>

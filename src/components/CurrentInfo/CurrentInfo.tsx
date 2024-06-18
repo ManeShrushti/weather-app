@@ -8,7 +8,8 @@ import './CurrentInfo.css'
 import { SymbolsPhrases } from '../../models/constants';
 
 interface CurrentInfoProps{
-    locationInfo : Location | null
+    locationInfo : Location | null,
+    tempUnit: string | 'C'
 }
 
 const CurrentInfo = (props:CurrentInfoProps) => {
@@ -25,16 +26,17 @@ const CurrentInfo = (props:CurrentInfoProps) => {
       currentSub.unsubscribe();
     }
     if(props.locationInfo?.id){
-      currentSub = weatherService.getCurrentInfo(props.locationInfo?.id).subscribe({
+      currentSub = weatherService.getCurrentInfo(props.locationInfo?.id,props.tempUnit).subscribe({
         next: (data: CurrentWeather) => {
           setCurrentInfo(data.current);
         },
         error: (err) => {
           setError(err.message);
         },
-    });
+      });
+
     }
-  }, [props.locationInfo?.id]);
+  }, [props.locationInfo?.id,props.tempUnit]);
  
     return (
         currentInfo && (
@@ -43,7 +45,7 @@ const CurrentInfo = (props:CurrentInfoProps) => {
                 <div className='flex justify-center align-start'>
                   <img src={getIconURL(currentInfo.symbol)} alt={currentInfo.symbol} className='weather-symbol'/>
                   <Typography variant="h3">
-                    {currentInfo.temperature}{'\u00b0'}C
+                    {currentInfo.temperature}{'\u00b0'}{props.tempUnit}
                   </Typography>
                   
                 </div>
@@ -55,7 +57,7 @@ const CurrentInfo = (props:CurrentInfoProps) => {
                 </div>
               </div> 
               <div className="mt-4 basis-[50%]">
-                  <CurrentDetails currentInfo={currentInfo}/>
+                  <CurrentDetails currentInfo={currentInfo} tempUnit={props.tempUnit}/>
               </div>
           </div>
         )

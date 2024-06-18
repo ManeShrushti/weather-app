@@ -35,7 +35,7 @@ const MainContainer = (props) => {
             <div className='flex justify-between w-full'>
               <div className='flex'>
                 <img src="/image/loading-logo.svg" alt="loading-clouds" className='weather-symbol'/>
-                <span className='text-[1.7rem]'>Weather</span>
+                <span className='text-[1.7rem]'>WeatherCast</span>
               </div>
               <div className='flex items-center'>
                 {'\u00b0'}C <Switch

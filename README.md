@@ -3,15 +3,15 @@
 Welcome to WeatherCast, your go-to solution for accurate and timely weather updates.
 WeatherCast is a sample React based project which provides comprehensive weather information with an intuitive interface.
 Whether you're planning your day, your week, or just curious about the weather conditions,
-Checkout WeatherCast : [https://rapidapi.com/foreca-ltd-foreca-ltd-default/api/foreca-weather](WeatherCast)
+Checkout WeatherCast : [WeatherCast](https://rapidapi.com/foreca-ltd-foreca-ltd-default/api/foreca-weather)
 
 ## Features
 - **Real-time Weather Updates:** Get current weather conditions, including temperature, humidity, wind speed, and more.
 - **12-Hours Forecast:** Plan ahead with our detailed 12-Hours weather forecast.
 - **7-Day Forecast:** Plan ahead with our detailed 7-day weather forecast.
 - **Customize unit:** You can view the temperatures both in Celsius and Fahrenheit.
-- **Real-time data:** real-time weather data is fetched using the [https://rapidapi.com/foreca-ltd-foreca-ltd-default/api/foreca-weather](Foreca Weather API) 
-- **Latest Component Libraries:** This app is build using [https://mui.com/material-ui/all-components/](Material-UI Components) and [https://tailwindcss.com/](Tailwind CSS Framework) 
+- **Real-time data:** real-time weather data is fetched using the [Foreca Weather API](https://rapidapi.com/foreca-ltd-foreca-ltd-default/api/foreca-weather)
+- **Latest Component Libraries:** This app is build using [Material-UI Components](https://mui.com/material-ui/all-components) and [Tailwind CSS Framework](https://tailwindcss.com/)
 
 
 ## Installation

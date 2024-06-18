@@ -3,7 +3,7 @@
 Welcome to WeatherCast, your go-to solution for accurate and timely weather updates.
 WeatherCast is a sample React based project which provides comprehensive weather information with an intuitive interface.
 Whether you're planning your day, your week, or just curious about the weather conditions,
-Checkout WeatherCast : [WeatherCast](https://rapidapi.com/foreca-ltd-foreca-ltd-default/api/foreca-weather)
+Checkout WeatherCast : [WeatherCast](https://weather-app-b0tj.onrender.com/)
 
 ## Features
 - **Real-time Weather Updates:** Get current weather conditions, including temperature, humidity, wind speed, and more.

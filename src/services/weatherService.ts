@@ -1,4 +1,4 @@
-import { Observable, catchError, from, map } from "rxjs";
+import { Observable,  catchError, from, map } from "rxjs";
 import { CurrentWeather, DailyForecastInfo, HourlyForecastInfo, LocationData  } from "../models/weather";
 import axios from "axios";
 
@@ -45,13 +45,16 @@ class WeatherService {
         );
     }
 
-    getCurrentInfo(id:number): Observable<CurrentWeather>{
+    getCurrentInfo(id:number,unit:string): Observable<CurrentWeather>{
       const url = `${this.baseUrl}/current/${id}`;
       return from(
         axios.get<CurrentWeather>(url, {
           headers: {
             'x-rapidapi-host': API_HOST,
             'x-rapidapi-key': API_KEY
+          },
+          params:{
+            'tempunit': unit
           }
         })
         ).pipe(
@@ -62,8 +65,9 @@ class WeatherService {
         );
     }
 
-    getForecast(id:number,type:string,steps?:number): Observable<HourlyForecastInfo|DailyForecastInfo>{
+    getForecast(id:number,type:string,steps:number,unit?:string): Observable<HourlyForecastInfo|DailyForecastInfo>{
       const url = `${this.baseUrl}/forecast/${type}/${id}`;
+    
       return from(
         axios.get<HourlyForecastInfo|DailyForecastInfo>(url, {
           headers: {
@@ -72,7 +76,9 @@ class WeatherService {
           },
           params:{
             'periods' : steps,
-            'dataset' : type == 'daily' ? 'full' : 'standard'
+            'dataset' : type === 'daily' ? 'full' : 'standard',
+            'tempunit': unit
+          
           }
         })
         ).pipe(
@@ -83,7 +89,6 @@ class WeatherService {
         );
     }
 
-    
   }
   
   export default WeatherService;

@@ -9,7 +9,8 @@ import CurrentInfo from '../CurrentInfo/CurrentInfo'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 interface LocationInfoProps {
-  setLocationDetails: (locationData: Location) => void
+  setLocationDetails: (locationData: Location) => void,
+  tempUnit: string | 'C'
 }
 
 
@@ -22,8 +23,6 @@ const LocationInfo = (props: LocationInfoProps) => {
   const weatherService = new WeatherService();
   let subscription: Subscription;
 
-  
-
   const searchLocation = ()=>{
     setLoading(true);
     setError(null);
@@ -34,15 +33,20 @@ const LocationInfo = (props: LocationInfoProps) => {
     }
     subscription = weatherService.getLocationInfo(location).subscribe({
       next: (data: LocationData) => {
-        props.setLocationDetails(data.locations[0]);
-        setLocationInfo(data.locations[0]);
+        if(data.locations.length){
+          props.setLocationDetails(data.locations[0]);
+          setLocationInfo(data.locations[0]);
+        }
+        else{
+          setError('Location not found!');
+        }
         setLoading(false);
       },
       error: (err) => {
         setError(err.message);
         setLoading(false);
       },
-  });
+    });
     // **USING AWAIT AND TRY CATCH****//
     // try {
     //   const data = await fetchWeather(location);
@@ -59,7 +63,7 @@ const LocationInfo = (props: LocationInfoProps) => {
     // }
   }
   return (
-    <div className='m-4 flex flex-col'>
+    <div className='m-4 flex flex-col h-[95%]'>
           <div className='flex'>
             <TextField
               id="location-textfield"
@@ -87,10 +91,17 @@ const LocationInfo = (props: LocationInfoProps) => {
               Search
             </Button>
         </div>
-        <div className='h-[90%] flex justify-center'>
-            {loading && <p>Loading...</p>}
-            {error && <p>Error: {error}</p>}
-            {!loading && !error && (<CurrentInfo locationInfo={locationInfo}/>)}
+        <div className='h-[90%] flex justify-center items-center'>
+            {loading && (
+              <div className='flex w-100 items-center'>
+                <object type="image/svg+xml" data="/image/loading.svg" className='loader'/>
+              </div>
+            
+            )}
+            {error && <div className='text-red-500'>Error: {error}</div>}
+            {!loading && !error && (
+              <CurrentInfo locationInfo={locationInfo} tempUnit={props.tempUnit}/>
+            )}
         </div>
     </div>
    

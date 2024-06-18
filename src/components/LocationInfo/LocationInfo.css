@@ -15,3 +15,27 @@
 .MuiInputAdornment-positionStart{
     margin-top: 0px !important;
 }
+
+.loader-viewer{
+    position: absolute;
+    z-index: 1000;
+    top: 100px;
+    left: 100px;
+    transform: translate(-50%,-50%);
+    border: 1px solid #ccc;
+}
+
+.loader-container{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    flex: 0 0 auto;
+    border-radius: .25em;
+    border: 1px solid #ccc;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,0.15);
+}
+
+.loader{
+    width: 100px;
+    height: 100px;
+}

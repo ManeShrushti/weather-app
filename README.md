@@ -10,7 +10,7 @@ Checkout WeatherCast : [https://rapidapi.com/foreca-ltd-foreca-ltd-default/api/f
 - **12-Hours Forecast:** Plan ahead with our detailed 12-Hours weather forecast.
 - **7-Day Forecast:** Plan ahead with our detailed 7-day weather forecast.
 - **Customize unit:** You can view the temperatures both in Celsius and Fahrenheit.
-- **Real-time data:** real time weather data is fetched using the [https://rapidapi.com/foreca-ltd-foreca-ltd-default/api/foreca-weather](Foreca Weather API) 
+- **Real-time data:** real-time weather data is fetched using the [https://rapidapi.com/foreca-ltd-foreca-ltd-default/api/foreca-weather](Foreca Weather API) 
 - **Latest Component Libraries:** This app is build using [https://mui.com/material-ui/all-components/](Material-UI Components) and [https://tailwindcss.com/](Tailwind CSS Framework) 
 
 

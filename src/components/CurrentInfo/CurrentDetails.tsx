@@ -15,7 +15,6 @@ const CurrentDetails = (props) => {
     height: '100%',
     borderRadius: '8px' 
   }));
-
   const [detailsArray,setDetailsArray] = useState([]);
   let Icons = Object.assign({},IconsMap);
   useEffect(() => {
@@ -49,8 +48,8 @@ const CurrentDetails = (props) => {
                 <div className='mb-2 text-lg flex justify-center'>
                   {getIcon(dt.icon)}<span className='desc-title'>{dt.title}</span>
                 </div>
-                <div className='text-2xl'>
-                    {dt.value}{dt.key === 'feelsLikeTemp' ? '° ' + props?.tempUnit : dt.unit}
+                <div  className='text-2xl'>
+                    {dt.value}{dt.key === 'feelsLikeTemp' ? props?.tempUnit : dt.unit}
                 </div>
                 <div className='text-xs text-left'>
                    {dt.subtitle}

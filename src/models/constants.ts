@@ -29,6 +29,7 @@ export const CurrentDetailsInfo = [
         title: 'Humidity',
         key: 'relHumidity',
         icon: 'humidity',
+        unit: '%',
         subtitle: 'Percentage of sky covered by clouds right now',
         value: null
     }

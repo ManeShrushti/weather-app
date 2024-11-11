@@ -49,7 +49,7 @@ const CurrentDetails = (props) => {
                   {getIcon(dt.icon)}<span className='desc-title'>{dt.title}</span>
                 </div>
                 <div  className='text-2xl'>
-                    {dt.value}{dt.key === 'feelsLikeTemp' ? props?.tempUnit : dt.unit}
+                    {dt.value}{dt.key === 'feelsLikeTemp' ? '\u00b0' + props?.tempUnit :  dt.unit}
                 </div>
                 <div className='text-xs text-left'>
                    {dt.subtitle}
